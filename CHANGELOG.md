@@ -2,7 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [3.0.1](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.0)
+## [3.0.](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.2)
+
+#### Features
+
+* Fix array null
+
+## [3.0.1](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.1)
 
 #### Features
 

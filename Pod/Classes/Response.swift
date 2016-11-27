@@ -95,7 +95,10 @@ public class Response : CustomStringConvertible
      */
     public func get(entity : String) -> [String : AnyObject]? {
         let ent = entities?[entity] as? [[String : AnyObject]]
-        return (ent?[0])
+        if (ent != nil) {
+            return ent?[0]
+        }
+        return (nil)
     }
     
     /**
@@ -103,7 +106,10 @@ public class Response : CustomStringConvertible
      
      */
     public func intent() -> Intent? {
-        return (intents?[0])
+        if ((intents?.count) != nil) {
+            return intents?[0]
+        }
+        return (nil)
     }
     
     //************ Methods - ACT ************

@@ -24,8 +24,8 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.bot = RecastAIClient(token : "YOUR_TOKEN")
-        self.bot = RecastAIClient(token : "YOUR_TOKEN", language: "en")
+        self.bot = RecastAIClient(token : "41ce668be9d0fe3018b66ddf6bec8784")
+//        self.bot = RecastAIClient(token : "YOUR_TOKEN", language: "en")
     }
     
     /**
