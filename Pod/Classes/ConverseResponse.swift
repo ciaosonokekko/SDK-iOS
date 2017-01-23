@@ -10,19 +10,19 @@ import ObjectMapper
 
 open class ConverseResponse: Mappable {
     
-    var uuid: String!
-    var source: String!
-    var replies: [String]?
-    var action: [String : Any]?
-    var next_actions: [Any]?
-    var memory: [String : Any]?
-    var entities: [String : Any]?
-    var intents: [Any]?
-    var conversation_token: String!
-    var language: String!
-    var timestamp: String!
-    var version: String!
-    var status: Int!
+    public var uuid: String!
+    public var source: String!
+    public var replies: [String]?
+    public var action: [String : Any]?
+    public var next_actions: [Any]?
+    public var memory: [String : Any]?
+    public var entities: [String : Any]?
+    public var intents: [Any]?
+    public var conversation_token: String!
+    public var language: String!
+    public var timestamp: String!
+    public var version: String!
+    public var status: Int!
     
     required convenience public init?(map: Map) {
         self.init()
