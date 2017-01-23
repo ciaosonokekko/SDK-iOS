@@ -69,7 +69,7 @@ public class RecastAIClient
             switch response.result {
             case .success(let value):
                 let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
-                successHandler(Mapper<RecastResponse>().map(JSON: recastResponse)!)
+                successHandler(Mapper<ConverseResponse>().map(JSON: recastResponse)!)
             case .failure(let error):
                 failureHandle(error)
             }
