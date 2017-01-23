@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-
+import ObjectMapper
 /**
 RecastAIClient class handling request to the API
  */
@@ -48,7 +48,7 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func textConverse(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void)
+    public func textConverse(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
     {
         if let tkn = token
         {
@@ -68,8 +68,8 @@ public class RecastAIClient
             response in
             switch response.result {
             case .success(let value):
-                let recastResponse = Response(json: value as! [String : AnyObject])
-                successHandler(recastResponse)
+                let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                successHandler(Mapper<RecastResponse>().map(JSON: recastResponse)!)
             case .failure(let error):
                 failureHandle(error)
             }
