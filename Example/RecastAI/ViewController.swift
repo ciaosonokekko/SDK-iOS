@@ -3,7 +3,7 @@
 //  RecastAI
 //
 //  Created by plieb on 03/29/2016.
-//  Copyright (c) 2016 plieb. All rights reserved.
+//  Copyright (c) 2017 plieb. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.bot = RecastAIClient(token : "41ce668be9d0fe3018b66ddf6bec8784")
+        self.bot = RecastAIClient(token : "YOUR_TOKEN")
 //        self.bot = RecastAIClient(token : "YOUR_TOKEN", language: "en")
     }
     
@@ -38,9 +38,23 @@ class ViewController: UIViewController
     func recastRequestDone(_ response : Response)
     {
         print(response)
-        print(response.language)
-        print(response.intent())
-        print(response.entities)
+        print(response.language as Any)
+        print(response.intent() as Any)
+        print(response.entities as Any)
+    }
+    
+    /**
+     Method called when the converse request was successful
+     
+     - parameter response: the response returned from the Recast API
+     
+     - returns: void
+     */
+    func recastRequestDone(_ response : ConverseResponse)
+    {
+        print(response.replies?[0] as Any)
+        print(response.language as Any)
+        print(response.entities as Any)
     }
     
     /**
@@ -63,7 +77,8 @@ class ViewController: UIViewController
         if (!(self.requestTextField.text?.isEmpty)!)
         {
             //Call makeRequest with string parameter to make a text request
-            self.bot?.textRequest(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
+//            self.bot?.textRequest(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
+            self.bot?.textConverse(self.requestTextField.text!, converseToken: "YOUR_CONVERSATION_UNIQUE_ID", successHandler: recastRequestDone, failureHandle: recastRequestError)
         }
     }
     

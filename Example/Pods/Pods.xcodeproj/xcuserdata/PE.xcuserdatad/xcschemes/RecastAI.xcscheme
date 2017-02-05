@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "908BDE9744E5A1B8B4D1B73A21C73A4F"
+               BlueprintIdentifier = "3BDB19503AC3652F9911361D66209D8C"
                BuildableName = "RecastAI.framework"
                BlueprintName = "RecastAI"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "908BDE9744E5A1B8B4D1B73A21C73A4F"
+            BlueprintIdentifier = "3BDB19503AC3652F9911361D66209D8C"
             BuildableName = "RecastAI.framework"
             BlueprintName = "RecastAI"
             ReferencedContainer = "container:Pods.xcodeproj">

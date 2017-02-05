@@ -1,6 +1,6 @@
 {
   "name": "RecastAI",
-  "version": "2.1.1",
+  "version": "3.0.2",
   "summary": "Recast.AI Official iOS SDK in Swift",
   "description": "Recast.AI Official iOS SDK in Swift. Allows you to make request to your bots.",
   "homepage": "https://github.com/RecastAI",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/RecastAI/SDK-ios.git",
-    "tag": "2.1.1"
+    "tag": "3.0.2"
   },
   "social_media_url": "https://twitter.com/recastai",
   "platforms": {
@@ -18,13 +18,11 @@
   },
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "Recast.AI": [
-      "Pod/Assets/*.png"
-    ]
-  },
   "dependencies": {
     "Alamofire": [
+
+    ],
+    "ObjectMapper": [
 
     ]
   }

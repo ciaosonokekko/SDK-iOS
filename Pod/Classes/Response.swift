@@ -55,7 +55,7 @@ public class Response : CustomStringConvertible
         let json = json["results"] as! [String : AnyObject]
         raw = json
         source = json["source"] as? String
-        intents = json["intents"] as! [Intent]
+        intents = json["intents"] as? [Intent]
         intents = [Intent]()
         for intns in json["intents"] as! [[String : AnyObject]] {
             intents?.append(Intent(intent: intns))

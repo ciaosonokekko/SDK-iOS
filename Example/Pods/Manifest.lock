@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (4.0.0)
-  - RecastAI (2.1.1):
+  - ObjectMapper (2.2.2)
+  - RecastAI (3.0.2):
     - Alamofire
+    - ObjectMapper
 
 DEPENDENCIES:
   - Alamofire
+  - ObjectMapper
   - RecastAI (from `../`)
 
 EXTERNAL SOURCES:
   RecastAI:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   Alamofire: fef59f00388f267e52d9b432aa5d93dc97190f14
-  RecastAI: 8d72580dcc958cea558449fa5f6c0e7b9916f1e3
+  ObjectMapper: 9e385c2295bcc4e16eabbcfc85db801442bba545
+  RecastAI: 7c7abe4c21677c3dcd4d23eca80b757f9633d591
 
-PODFILE CHECKSUM: 2fb1ae63b7b05465ca6e15e6d7c1d80c340020d7
+PODFILE CHECKSUM: 7ca588bfbf22e79ad4b4629f3721756f02b39b48
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.0.0

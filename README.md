@@ -113,6 +113,23 @@ __If a language is provided:__ the language you've given is used for processing 
 
 __If no language is provided:__ the language of the text is detected and is used for processing if your bot has expressions for it, else your bot's primary language is used for processing.
 
+## Text Converse
+
+The `textConverse` method allows you to make a request to the Recast.AI Bot Builder API. The `textConverse` method is to make a **Converse** request and takes a **text** as a `String` as parameter and a **language** as a `String`, a `Token`, a `ConverseToken` as **optional parameters**. You also need to provide a `successHandle` and a `failureHandle` functions that will be called when either the request is done or the request fails.
+If you pass a token or a language in the options parameter, it will override your default client language or token. The converse token is unique ID you need to provide in order to access the a specific conversation.
+
+
+```swift
+/**
+Make text request to Recast.AI API
+*/
+func makeRequest()
+{
+//Call makeRequest with string parameter to make a converse request
+self.bot?.textConverse(<#T##request: String##String#>, converseToken: "YOUR_CONVERSATION_UNIQUE_ID", successHandler: <#T##(Response) -> Void#>, failureHandle: <#T##(Error) -> Void#>)
+}
+```
+
 ## File Request
 
 In order to make a **File** Request you need to implement two methods you need to pass a file as a parameter. You also need to provide a `successHandle` and a `failureHandle` functions that will be called when either the request is done or the request fails.
