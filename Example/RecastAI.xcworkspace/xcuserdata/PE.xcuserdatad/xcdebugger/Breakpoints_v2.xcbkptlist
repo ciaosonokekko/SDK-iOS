@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Pod/Classes/Entities.swift"
-            timestampString = "512522316.773246"
+            timestampString = "512558078.486835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "565"
+            endingLineNumber = "565"
             landmarkName = "init(map:)"
             landmarkType = "7">
          </BreakpointContent>

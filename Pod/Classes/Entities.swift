@@ -77,38 +77,7 @@ public class Entities : Mappable
      */
     
     required public init?(map: Map){
-        // check if a required "name" property exists within the JSON.
-//        self.init()
-//        mapping(map: map)
-//        if map.JSON["cardinals"] == nil {return nil}
-//        if map.JSON["colors"] == nil {return nil}
-//        if map.JSON["datetimes"] == nil {return nil}
-//        if map.JSON["distances"] == nil {return nil}
-//        if map.JSON["durations"] == nil {return nil}
-//        if map.JSON["emails"] == nil {return nil}
-//        if map.JSON["emojis"] == nil {return nil}
-//        if map.JSON["ips"] == nil {return nil}
-//        if map.JSON["interval"] == nil {return nil}
-//        if map.JSON["jobs"] == nil {return nil}
-//        if map.JSON["languages"] == nil {return nil}
-//        if map.JSON["locations"] == nil {return nil}
-//        if map.JSON["masses"] == nil {return nil}
-//        if map.JSON["moneys"] == nil {return nil}
-//        if map.JSON["nationalities"] == nil {return nil}
-//        if map.JSON["numbers"] == nil {return nil}
-//        if map.JSON["ordinals"] == nil {return nil}
-//        if map.JSON["durations"] == nil {return nil}
-//        if map.JSON["organizations"] == nil {return nil}
-//        if map.JSON["percents"] == nil {return nil}
-//        if map.JSON["persons"] == nil {return nil}
-//        if map.JSON["phone"] == nil {return nil}
-//        if map.JSON["pronouns"] == nil {return nil}
-//        if map.JSON["sets"] == nil {return nil}
-//        if map.JSON["sorts"] == nil {return nil}
-//        if map.JSON["speeds"] == nil {return nil}
-//        if map.JSON["temperatures"] == nil {return nil}
-//        if map.JSON["urls"] == nil {return nil}
-//        if map.JSON["volumes"] == nil {return nil}
+
     }
     
     // Mappable
