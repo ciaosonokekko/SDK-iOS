@@ -24,7 +24,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.bot = RecastAIClient(token : "YOUR_TOKEN")
+        self.bot = RecastAIClient(token : "d4dafe14b27a35492ecb6c4c21606d3d")
 //        self.bot = RecastAIClient(token : "YOUR_TOKEN", language: "en")
     }
     
@@ -37,10 +37,11 @@ class ViewController: UIViewController
      */
     func recastRequestDone(_ response : Response)
     {
-        print(response)
-        print(response.language as Any)
-        print(response.intent() as Any)
-        print(response.entities as Any)
+        print(response.timestamp)
+        print(response.status)
+        print(response.intents as Any)
+        print(response.language)
+        print(response.source)
     }
     
     /**
@@ -52,9 +53,8 @@ class ViewController: UIViewController
      */
     func recastRequestDone(_ response : ConverseResponse)
     {
-        print(response.replies?[0] as Any)
-        print(response.language as Any)
-        print(response.entities as Any)
+        print(response.reply() as Any)
+        print(response.action?.slug as Any)
     }
     
     /**
@@ -77,8 +77,8 @@ class ViewController: UIViewController
         if (!(self.requestTextField.text?.isEmpty)!)
         {
             //Call makeRequest with string parameter to make a text request
-//            self.bot?.textRequest(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
-            self.bot?.textConverse(self.requestTextField.text!, converseToken: "YOUR_CONVERSATION_UNIQUE_ID", successHandler: recastRequestDone, failureHandle: recastRequestError)
+//            self.bot?.analyseText(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
+//            self.bot?.converseText(self.requestTextField.text!, converseToken: "YOUR_CONVERSATION_UNIQUE_ID", successHandler: recastRequestDone, failureHandle: recastRequestError)
         }
     }
     
@@ -91,7 +91,7 @@ class ViewController: UIViewController
         {
             let url = URL(string: self.requestTextField.text!)!
             //Call makeRequest with string parameter to make a text request
-            self.bot?.fileRequest(url, successHandler: recastRequestDone, failureHandle: recastRequestError)
+            self.bot?.analyseFile(url, successHandler: recastRequestDone, failureHandle: recastRequestError)
         }
     }
 }

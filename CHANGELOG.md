@@ -2,7 +2,14 @@
 All notable changes to this project will be documented in this file.
 
 ---
-## [3.0.](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.2)
+
+## [4.0.0](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.2)
+
+#### Features
+
+* Major update with strong typed object
+
+## [3.0.2](https://github.com/RecastAI/SDK-ios/releases/tag/3.0.2)
 
 #### Features
 

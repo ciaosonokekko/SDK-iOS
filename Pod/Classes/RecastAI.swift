@@ -48,7 +48,7 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func textConverse(_ request : String, token : String? = nil, converseToken : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
+    public func converseText(_ request : String, token : String? = nil, converseToken : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
     {
         if let tkn = token
         {
@@ -90,7 +90,7 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func textRequest(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void)
+    public func analyseText(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void)
     {
         if let tkn = token
         {
@@ -110,8 +110,8 @@ public class RecastAIClient
             response in
             switch response.result {
                 case .success(let value):
-                    let recastResponse = Response(json: value as! [String : AnyObject])
-                    successHandler(recastResponse)
+                    let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                    successHandler(Mapper<Response>().map(JSON: recastResponse)!)
                 case .failure(let error):
                     failureHandle(error)
             }
@@ -128,7 +128,7 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func fileRequest(_ audioFileURL: URL, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void) {
+    public func analyseFile(_ audioFileURL: URL, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void) {
         if let tkn = token
         {
             self.token = tkn
@@ -146,8 +146,8 @@ public class RecastAIClient
                 upload.responseJSON { response in
                     switch response.result {
                     case .success(let value):
-                        let recastResponse = Response(json: value as! [String : AnyObject])
-                        successHandler(recastResponse)
+                        let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                        successHandler(Mapper<Response>().map(JSON: recastResponse)!)
                     case .failure(let error):
                         failureHandle(error)
                     }

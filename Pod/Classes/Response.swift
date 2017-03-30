@@ -7,25 +7,26 @@
 //  pierre-edouard.lieb@recast.ai
 
 import Foundation
+import ObjectMapper
 
 /**
  Class Response
  
 Return from the Recast API call
  */
-public class Response : CustomStringConvertible
+public class Response : Mappable, CustomStringConvertible
 {
-    public var source : String?
+    public var source : String!
     public var intents : [Intent]?
-    public var act : String?
-    public var type : String?
-    public var sentiment : String?
-    public var entities : [String : AnyObject]?
-    public var language : String?
-    public var version : String?
-    public var timestamp : String?
-    public var status : Int?
-    public var raw : [String : AnyObject]
+    public var act : String!
+    public var type : String!
+    public var sentiment : String!
+    public var entities : Entities?
+    public var language : String!
+    public var version : String!
+    public var timestamp : String!
+    public var status : Int!
+    public var raw : [String : AnyObject] = [:]
     
     private var ACT_ASSERT : String = "assert"
     private var ACT_COMMAND : String = "command"
@@ -48,26 +49,24 @@ public class Response : CustomStringConvertible
     /**
      Init class with JSON
      
-     - parameter raw : JSON object to init with
      */
-    init (json: [String : AnyObject])
-    {
-        let json = json["results"] as! [String : AnyObject]
-        raw = json
-        source = json["source"] as? String
-        intents = json["intents"] as? [Intent]
-        intents = [Intent]()
-        for intns in json["intents"] as! [[String : AnyObject]] {
-            intents?.append(Intent(intent: intns))
-        }
-        act = json["act"] as? String
-        type = json["type"] as? String
-        sentiment = json["sentiment"] as? String
-        entities = json["entities"] as? [String : AnyObject]
-        language = json["language"] as? String
-        version = json["version"] as? String
-        timestamp = json["timestamp"] as? String
-        status = json["status"] as? Int
+    required convenience public init?(map: Map) {
+        self.init()
+        mapping(map: map)
+    }
+    
+    // Mappable
+    public func mapping(map: Map) {
+        source      <- map["source"]
+        intents     <- map["intents"]
+        act         <- map["act"]
+        type        <- map["type"]
+        sentiment   <- map["sentiment"]
+        entities    <- map["entities"]
+        language    <- map["language"]
+        version     <- map["version"]
+        timestamp   <- map["timestamp"]
+        status      <- map["status"]
     }
     
     /**
@@ -78,28 +77,6 @@ public class Response : CustomStringConvertible
     }
     
     //************ Methods - Global ************
-    
-    /**
-     Get all entities regarding the parameter
-     
-     - parameter entity : the entity you want to retrieve
-     */
-    public func all(entity : String) -> [[String : AnyObject]]? {
-        return (entities?[entity] as? [[String : AnyObject]])
-    }
-    
-    /**
-     Return the first entity passed as the parameter
-     
-     - parameter entity : the entity you want to retrieve
-     */
-    public func get(entity : String) -> [String : AnyObject]? {
-        let ent = entities?[entity] as? [[String : AnyObject]]
-        if (ent != nil) {
-            return ent?[0]
-        }
-        return (nil)
-    }
     
     /**
      Get the first intent
