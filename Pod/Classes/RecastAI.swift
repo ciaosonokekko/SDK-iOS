@@ -48,11 +48,11 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func textConverse(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
+    public func converseText(_ request : String, token : String? = nil, converseToken : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
     {
         if let tkn = token
         {
-            self.token = token!
+            self.token = tkn
         }
         let headers = ["Authorization" : "Token " + self.token]
         var param = ["text" : request]
@@ -64,16 +64,73 @@ public class RecastAIClient
         {
             param["language"] = ln
         }
+        if let cnvrstnTkn = converseToken
+        {
+            param["conversation_token"] = cnvrstnTkn
+        }
         Alamofire.request(RecastAIClient.textConverse, method: .post, parameters: param, headers: headers).responseJSON {
             response in
             switch response.result {
             case .success(let value):
                 let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
-                successHandler(Mapper<ConverseResponse>().map(JSON: recastResponse)!)
+                let converseResponse = Mapper<ConverseResponse>().map(JSON: recastResponse)!
+                converseResponse.requestToken = self.token
+                successHandler(converseResponse)
             case .failure(let error):
                 failureHandle(error)
             }
         }
+    }
+    
+    /**
+     Make a text converse to Recast API
+     
+     - parameter request: sentence to send to Recast API
+     - parameter lang: lang of the sentence if needed
+     - parameter successHandler: closure called when request succeed
+     - parameter failureHandler: closure called when request failed
+     
+     - returns: void
+     */
+    public func converseFile(_ audioFileURL: URL, token : String? = nil, converseToken : String? = nil, lang: String? = nil, successHandler: @escaping (ConverseResponse) -> Void, failureHandle: @escaping (Error) -> Void)
+    {
+        if let tkn = token
+        {
+            self.token = tkn
+        }
+        let headers = ["Authorization" : "Token " + self.token]
+        var ln : String = lang!
+        let conversationToken : String = converseToken!
+        if (self.language != nil)
+        {
+            ln = self.language!
+        }
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(audioFileURL, withName: "voice")
+            multipartFormData.append(ln.data(using: String.Encoding.utf8)!, withName: "language")
+            multipartFormData.append(conversationToken.data(using: String.Encoding.utf8)!, withName: "conversation_token")
+        },
+         to: RecastAIClient.voiceConverse,
+         method: .post,
+         headers: headers,
+         encodingCompletion: { encodingResult in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                upload.responseJSON { response in
+                    switch response.result {
+                    case .success(let value):
+                        let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                        let converseResponse = Mapper<ConverseResponse>().map(JSON: recastResponse)!
+                        converseResponse.requestToken = self.token
+                        successHandler(converseResponse)
+                    case .failure(let error):
+                        failureHandle(error)
+                    }
+                }
+            case .failure(let encodingError):
+                failureHandle(encodingError)
+            }
+        })
     }
     
     /**
@@ -86,11 +143,11 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func textRequest(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void)
+    public func analyseText(_ request : String, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void)
     {
         if let tkn = token
         {
-            self.token = token!
+            self.token = tkn
         }
         let headers = ["Authorization" : "Token " + self.token]
         var param = ["text" : request]
@@ -106,8 +163,8 @@ public class RecastAIClient
             response in
             switch response.result {
                 case .success(let value):
-                    let recastResponse = Response(json: value as! [String : AnyObject])
-                    successHandler(recastResponse)
+                    let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                    successHandler(Mapper<Response>().map(JSON: recastResponse)!)
                 case .failure(let error):
                     failureHandle(error)
             }
@@ -124,10 +181,10 @@ public class RecastAIClient
      
      - returns: void
      */
-    public func fileRequest(_ audioFileURL: URL, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void) {
+    public func analyseFile(_ audioFileURL: URL, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void) {
         if let tkn = token
         {
-            self.token = token!
+            self.token = tkn
         }
         let headers = ["Authorization": "Token " + self.token]
         Alamofire.upload(multipartFormData: { multipartFormData in
@@ -142,8 +199,8 @@ public class RecastAIClient
                 upload.responseJSON { response in
                     switch response.result {
                     case .success(let value):
-                        let recastResponse = Response(json: value as! [String : AnyObject])
-                        successHandler(recastResponse)
+                        let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                        successHandler(Mapper<Response>().map(JSON: recastResponse)!)
                     case .failure(let error):
                         failureHandle(error)
                     }
@@ -151,46 +208,6 @@ public class RecastAIClient
             case .failure(let encodingError):
                         failureHandle(encodingError)
             }
-        })
-    }
-    
-    /**
-     Make a voice converse to Recast API
-     
-     - parameter audioFileURL: audio file URL to send to RecastAI
-     - parameter lang: lang of the sentence if needed
-     - parameter successHandler: closure called when request succeed
-     - parameter failureHandler: closure called when request failed
-     
-     - returns: void
-     */
-    public func fileConverse(_ audioFileURL: URL, token : String? = nil, lang: String? = nil, successHandler: @escaping (Response) -> Void, failureHandle: @escaping (Error) -> Void) {
-        if let tkn = token
-        {
-            self.token = token!
-        }
-        let headers = ["Authorization": "Token " + self.token]
-        Alamofire.upload(multipartFormData: { multipartFormData in
-            multipartFormData.append(audioFileURL, withName: "voice")
-        },
-                         to: RecastAIClient.voiceConverse,
-                         method: .post,
-                         headers: headers,
-                         encodingCompletion: { encodingResult in
-                            switch encodingResult {
-                            case .success(let upload, _, _):
-                                upload.responseJSON { response in
-                                    switch response.result {
-                                    case .success(let value):
-                                        let recastResponse = Response(json: value as! [String : AnyObject])
-                                        successHandler(recastResponse)
-                                    case .failure(let error):
-                                        failureHandle(error)
-                                    }
-                                }
-                            case .failure(let encodingError):
-                                failureHandle(encodingError)
-                            }
         })
     }
 }

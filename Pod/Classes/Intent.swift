@@ -7,27 +7,31 @@
 //
 
 import Foundation
+import ObjectMapper
 
 /**
  Class Response
  
  Return from the Recast API call
  */
-public class Intent : CustomStringConvertible
+public class Intent : Mappable, CustomStringConvertible
 {
     public var confidence : Float?
     public var slug : String?
+
     
     /**
-     Init class with JSON
-     
-     - parameter raw : JSON object to init with
+     Init class map
      */
-    init (intent: [String : AnyObject])
+    required public init?(map: Map)
     {
-        confidence = intent["confidence"] as? Float
-        slug = intent["slug"] as? String
         
+    }
+    
+    // Mappable
+    public func mapping(map: Map) {
+        confidence      <- map["confidence"]
+        slug            <- map["slug"]
     }
     
     public var description: String {

@@ -7,6 +7,7 @@ project 'RecastAI.xcodeproj'
 target 'RecastAI_Example' do
   pod 'RecastAI', :path => '../'
   pod 'Alamofire'
+  pod 'ObjectMapper'
 end
 
 post_install do |installer|

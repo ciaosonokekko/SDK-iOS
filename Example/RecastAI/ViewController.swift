@@ -3,7 +3,7 @@
 //  RecastAI
 //
 //  Created by plieb on 03/29/2016.
-//  Copyright (c) 2016 plieb. All rights reserved.
+//  Copyright (c) 2017 plieb. All rights reserved.
 //
 
 import UIKit
@@ -24,7 +24,7 @@ class ViewController: UIViewController
     {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.bot = RecastAIClient(token : "41ce668be9d0fe3018b66ddf6bec8784")
+        self.bot = RecastAIClient(token : "d4dafe14b27a35492ecb6c4c21606d3d")
 //        self.bot = RecastAIClient(token : "YOUR_TOKEN", language: "en")
     }
     
@@ -37,10 +37,24 @@ class ViewController: UIViewController
      */
     func recastRequestDone(_ response : Response)
     {
-        print(response)
+        print(response.timestamp)
+        print(response.status)
+        print(response.intents as Any)
         print(response.language)
-        print(response.intent())
-        print(response.entities)
+        print(response.source)
+    }
+    
+    /**
+     Method called when the converse request was successful
+     
+     - parameter response: the response returned from the Recast API
+     
+     - returns: void
+     */
+    func recastRequestDone(_ response : ConverseResponse)
+    {
+        print(response.reply() as Any)
+        print(response.action?.slug as Any)
     }
     
     /**
@@ -63,7 +77,8 @@ class ViewController: UIViewController
         if (!(self.requestTextField.text?.isEmpty)!)
         {
             //Call makeRequest with string parameter to make a text request
-            self.bot?.textRequest(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
+//            self.bot?.analyseText(self.requestTextField.text!, successHandler: recastRequestDone, failureHandle: recastRequestError)
+//            self.bot?.converseText(self.requestTextField.text!, converseToken: "YOUR_CONVERSATION_UNIQUE_ID", successHandler: recastRequestDone, failureHandle: recastRequestError)
         }
     }
     
@@ -76,7 +91,7 @@ class ViewController: UIViewController
         {
             let url = URL(string: self.requestTextField.text!)!
             //Call makeRequest with string parameter to make a text request
-            self.bot?.fileRequest(url, successHandler: recastRequestDone, failureHandle: recastRequestError)
+            self.bot?.analyseFile(url, successHandler: recastRequestDone, failureHandle: recastRequestError)
         }
     }
 }

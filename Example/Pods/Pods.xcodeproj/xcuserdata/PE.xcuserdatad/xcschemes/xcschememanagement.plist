@@ -9,12 +9,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-RecastAI_Example.xcscheme</key>
+		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RecastAI-Recast.AI.xcscheme</key>
+		<key>Pods-RecastAI_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81CA678A54A62EFD1F66993B0436F399</key>
+		<key>93AB8E765E1F6BFB93CCB1126C39A9F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>908BDE9744E5A1B8B4D1B73A21C73A4F</key>
+		<key>B43918AB915242B851ABEFB5D70BE0AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DEE454485CF93FF0E78733B60FF79321</key>
+		<key>CE2CAFB044C97BA461355A2BD31ECD3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
