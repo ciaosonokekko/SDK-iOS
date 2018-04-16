@@ -68,7 +68,9 @@ public class RecastAIClient
         {
             param["conversation_token"] = cnvrstnTkn
         }
-        Alamofire.request(RecastAIClient.textConverse, method: .post, parameters: param, headers: headers).responseJSON {
+        Alamofire.request(RecastAIClient.textConverse, method: .post, parameters: param, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
             response in
             switch response.result {
             case .success(let value):
@@ -159,7 +161,9 @@ public class RecastAIClient
         {
             param["language"] = ln
         }
-        Alamofire.request(RecastAIClient.textRequest, method: .post, parameters: param, headers: headers).responseJSON {
+        Alamofire.request(RecastAIClient.textRequest, method: .post, parameters: param, headers: headers)
+            .validate(statusCode: 200..<300)
+            .responseJSON {
             response in
             switch response.result {
                 case .success(let value):
