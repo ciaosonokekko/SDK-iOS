@@ -20,6 +20,8 @@ public class RecastAIClient
     static fileprivate let textConverse : String = base_url + "converse"
     static fileprivate let voiceRequest : String = base_url_voice + "request"
     static fileprivate let voiceConverse : String = base_url_voice + "converse"
+    static fileprivate let base_url_dialog : String = "https://api.recast.ai/build/v1/"
+    static fileprivate let textDialog : String = base_url_dialog + "dialog"
 
     fileprivate var token : String
     fileprivate let language : String?
@@ -214,5 +216,49 @@ public class RecastAIClient
             }
         })
     }
+    
+    /**
+     Engage in a conversation with a bot through the Recast Dialog endpoint
+     
+     - parameter message: sentence to send to Recast API (required)
+     - parameter conversationId: Unique ID of this conversation (required)
+     - parameter lang: lang of the sentence if needed
+     - parameter successHandler: closure called when request succeed
+     - parameter failureHandler: closure called when request failed
+     
+     - returns: void
+     */
+    public func dialogText(_ message : String, token : String? = nil, conversationId : String, lang: String? = nil, successHandler: @escaping (DialogResponse) -> Void, failureHandle: @escaping (Error) -> Void)
+    {
+        if let tkn = token
+        {
+            self.token = tkn
+        }
+        let headers = ["Authorization" : "Token " + self.token]
+        var param : Parameters = [:]
+        param["message"] = ["type":"text", "content":message]
+        if let ln = lang
+        {
+            param["language"] = ln
+        }
+        else if let ln = self.language
+        {
+            param["language"] = ln
+        }
+        param["conversation_id"] = conversationId
+        
+        Alamofire.request(RecastAIClient.textDialog, method: .post, parameters: param, headers: headers).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                let recastResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+                let converseResponse = Mapper<DialogResponse>().map(JSON: recastResponse)!
+                successHandler(converseResponse)
+            case .failure(let error):
+                failureHandle(error)
+            }
+        }
+    }
+
 }
 
