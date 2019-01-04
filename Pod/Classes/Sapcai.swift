@@ -4,7 +4,6 @@
 //
 //  Created by Pierre-Edouard LIEB on 24/03/2016.
 //
-//  pierre-edouard.lieb@sap.com
 
 import Foundation
 import Alamofire
@@ -14,13 +13,13 @@ SapcaiClient class handling request to the API
  */
 public class SapcaiClient
 {
-    static fileprivate let base_url : String = "https://api.cai.tool.sap/v2/"
-    static fileprivate let base_url_voice : String = "ws://api.cai.tool.sap/v2/"
+    static fileprivate let base_url : String = "https://api.cai.tools.sap/v2/"
+    static fileprivate let base_url_voice : String = "ws://api.cai.tools.sap/v2/"
     static fileprivate let textRequest : String = base_url + "request"
     static fileprivate let textConverse : String = base_url + "converse"
     static fileprivate let voiceRequest : String = base_url_voice + "request"
     static fileprivate let voiceConverse : String = base_url_voice + "converse"
-    static fileprivate let base_url_dialog : String = "https://api.cai.tool.sap/build/v1/"
+    static fileprivate let base_url_dialog : String = "https://api.cai.tools.sap/build/v1/"
     static fileprivate let textDialog : String = base_url_dialog + "dialog"
 
     fileprivate var token : String

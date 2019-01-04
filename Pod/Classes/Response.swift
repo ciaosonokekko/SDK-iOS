@@ -4,7 +4,6 @@
 //
 //  Created by Pierre-Edouard LIEB on 24/03/2016.
 //
-//  pierre-edouard.lieb@sap.com
 
 import Foundation
 import ObjectMapper

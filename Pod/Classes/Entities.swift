@@ -4,7 +4,6 @@
 //
 //  Created by Pierre-Edouard LIEB on 24/03/2016.
 //
-//  pierre-edouard.lieb@sap.com
 
 import Foundation
 import ObjectMapper
@@ -1085,7 +1084,7 @@ public class Temperature : Mappable, CustomStringConvertible
 /**
  Struct Url
  
- Examples :	https://cai.tool.sap, localhost:9000, api.cai.tool.sap/request
+ Examples :	https://cai.tools.sap, localhost:9000, api.cai.tools.sap/request
  
  Key:
  - value: String, the downcased entity extracted

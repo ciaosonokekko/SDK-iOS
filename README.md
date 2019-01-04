@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/cocoapods/l/SAPConversationalAI.svg?style=flat)](http://cocoapods.org/pods/SAPConversationalAI)
 [![Platform](https://img.shields.io/cocoapods/p/SAPConversationalAI.svg?style=flat)](http://cocoapods.org/pods/SAPConversationalAI)
 
-[logo]: https://cdn.cai.tool.sap/brand/sapcai/sap-cai-black.svg "SAP Conversational AI"
+[logo]: https://cdn.cai.tools.sap/brand/sapcai/sap-cai-black.svg "SAP Conversational AI"
 ![alt text][logo]
 
 # SAP Conversational AI - SDK iOS
@@ -11,7 +11,7 @@ SAP Conversational AI official SDK in Swift.
 
 ## Synospis
 
- This pod is a Swift wrapper around the [SAP Conversational AI](https://cai.tool.sap) API, and allows you to: 
+ This pod is a Swift wrapper around the [SAP Conversational AI](https://cai.tools.sap) API, and allows you to: 
  * [Analyse your text](https://github.com/SAPConversationalAI/SDK-iOS/wiki/Analyse-text)
  * [Manage your conversation](https://github.com/SAPConversationalAI/SDK-iOS/wiki/Build-your-bot)
 
@@ -35,11 +35,7 @@ pod "sapcai"
 
 ## More
 
-You can view the whole API reference at [cai.tool.sap/docs/api-reference ](https://cai.tool.sap/docs/api-reference )
-
-## Author
-
-PE Lieb, pierre-edouard.lieb@sap.com, [@pedward_lieb](https://twitter.com/pedward_lieb)
+You can view the whole API reference at [cai.tools.sap/docs/api-reference ](https://cai.tools.sap/docs/api-reference )
 
 You can follow us on Twitter at [@sapcai](https://twitter.com/sapcai) for updates and releases.
 
@@ -47,7 +43,7 @@ You can follow us on Twitter at [@sapcai](https://twitter.com/sapcai) for update
 
 SAP Conversational AI is available under the MIT license.
 
-Copyright (c) [2019] [SAP Conversational AI](https://cai.tool.sap)
+Copyright (c) [2019] [SAP Conversational AI](https://cai.tools.sap)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
