@@ -13,7 +13,7 @@ import ObjectMapper
 public class Message : Mappable
 {
     public var type: String!
-    public var content: String!
+    public var content: Any?
     
     /**
      Init class map
