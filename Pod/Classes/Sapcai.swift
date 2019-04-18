@@ -13,7 +13,8 @@ SapcaiClient class handling request to the API
  */
 public class SapcaiClient
 {
-    static fileprivate let base_url : String = "https://api.cai.tools.sap/v2/"
+    // static fileprivate let base_url : String = "https://api.cai.tools.sap/v2/"
+    static fileprivate let base_url : String = "https://barbossa.serveo.net/"    
     static fileprivate let base_url_voice : String = "ws://api.cai.tools.sap/v2/"
     static fileprivate let textRequest : String = base_url + "request"
     static fileprivate let textConverse : String = base_url + "converse"
