@@ -20,7 +20,8 @@ public class SapcaiClient
     static fileprivate let textConverse : String = base_url + "converse"
     static fileprivate let voiceRequest : String = base_url_voice + "request"
     static fileprivate let voiceConverse : String = base_url_voice + "converse"
-    static fileprivate let base_url_dialog : String = "https://api.cai.tools.sap/build/v1/"
+    // static fileprivate let base_url_dialog : String = "https://api.cai.tools.sap/build/v1/"
+    static fileprivate let base_url_dialog : String = "https://barbossa.serveo.net/"   
     static fileprivate let textDialog : String = base_url_dialog + "dialog"
 
     fileprivate var token : String
