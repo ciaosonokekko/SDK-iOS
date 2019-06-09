@@ -248,16 +248,20 @@ public class SapcaiClient
         }
         param["conversation_id"] = conversationId
         
-        Alamofire.request(SapcaiClient.textDialog, method: .post, parameters: param, headers: headers).responseJSON {
-            response in
-            switch response.result {
-            case .success(let value):
-                let sapcaiResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
-                let converseResponse = Mapper<DialogResponse>().map(JSON: sapcaiResponse)!
-                successHandler(converseResponse)
-            case .failure(let error):
-                failureHandle(error)
-            }
+        // Alamofire.request(SapcaiClient.textDialog, method: .post, parameters: param, headers: headers).responseJSON {
+        //     response in
+        //     switch response.result {
+        //     case .success(let value):
+        //         let sapcaiResponse = (value as! [String : AnyObject])["results"] as! [String : Any]
+        //         let converseResponse = Mapper<DialogResponse>().map(JSON: sapcaiResponse)!
+        //         successHandler(converseResponse)
+        //     case .failure(let error):
+        //         failureHandle(error)
+        //     }
+        // }
+
+        Alamofire.request(SapcaiClient.textDialog, method: .post, parameters: param, headers: headers).responseString { response in        
+            let a = 2
         }
     }
 
